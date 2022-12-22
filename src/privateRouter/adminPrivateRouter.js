@@ -6,7 +6,7 @@ export default function AdminPrivateRouter() {
    
   return(
     <>
-      {auth? (<Outlet/>):(<Navigate to='/admin-login/'/>)}
+      {auth? (<Outlet/>):(<Navigate to='/seba-login/'/>)}
       
     </>
   )

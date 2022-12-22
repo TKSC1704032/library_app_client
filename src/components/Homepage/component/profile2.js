@@ -3,24 +3,24 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {
-  Alert,
-  AlertTitle,
-  Box,
-  Container,
-  FormControl,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Typography
+    Alert,
+    AlertTitle,
+    Box,
+    Container,
+    FormControl,
+    Grid,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    Typography
 } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useAuth } from "../../../contexts/authContext";
 
 function Editfield() {
-  const { currentUser } = useAuth();
+  const { currentUser,setCurrentUser } = useAuth();
 
   return (
     <Grid container>
@@ -44,7 +44,7 @@ function Editfield() {
   );
 }
 export default function Profile() {
-  const { currentUser } = useAuth();
+  const { currentUser, setCurrentUser } = useAuth();
   const [avatar, setAvatar] = useState("");
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
@@ -204,7 +204,7 @@ export default function Profile() {
                       formData.append("avatar", avatar);
                       axios
                         .post(
-                          "https://warm-sea-39505.herokuapp.com/api/student/change-avatar/",
+                          "https://ruetonlineservice.onrender.com/api/student/change-avatar/",
                           formData,
                           {
                             headers: { "Content-type": "multipart/form-data" },
@@ -218,6 +218,9 @@ export default function Profile() {
                           setInfo({
                             status: res.data.status,
                             message: res.data.message,
+                          });
+                          setCurrentUser((prev)=>{
+                            return {...prev, avatar:res.data.img_url}
                           });
                         })
                         .catch(function (err) {
@@ -251,7 +254,7 @@ export default function Profile() {
 
                     axios
                       .delete(
-                        `https://warm-sea-39505.herokuapp.com/api/student/remove-avatar/${currentUser._id}/`,
+                        `https://ruetonlineservice.onrender.com/api/student/remove-avatar/${currentUser._id}/`,
                         { credentials: "include", withCredentials: true }
                       )
                       .then(function (res) {
@@ -259,6 +262,9 @@ export default function Profile() {
                         setInfo({
                           status: res.data.status,
                           message: res.data.message,
+                        });
+                        setCurrentUser((prev)=>{
+                          return {...prev, avatar:''}
                         });
                       })
                       .catch(function (err) {
@@ -436,7 +442,7 @@ export default function Profile() {
                   ) {
                     axios
                       .post(
-                        "https://warm-sea-39505.herokuapp.com/api/student/refresh-token/",
+                        "https://ruetonlineservice.onrender.com/api/student/refresh-token/",
                         {},
                         { credentials: "include", withCredentials: true }
                       )
@@ -444,7 +450,7 @@ export default function Profile() {
 
                         axios
                         .post(
-                          `https://warm-sea-39505.herokuapp.com/api/student/changepassword/${currentUser._id}`,
+                          `https://ruetonlineservice.onrender.com/api/student/changepassword/${currentUser._id}`,
                           details,
                           {
                             headers: { "Authorization":`Bearer ${res.data["AccessToken"]}` },

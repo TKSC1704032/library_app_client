@@ -74,7 +74,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const pages = ["Issued Books", "Re-Issue-Books", "ContactUs"];
 const settings = ["Profile", "History", "Logout"];
 
-const ResponsiveAppBar = ({handleOpenNotification}) => {
+const ResponsiveAppBar = ({profile,handleOpenNotification}) => {
   const {auth,logout,setSearchTerm,setBookLoad,currentUser}=useAuth();
 
   const handleSearch = (e) => {
@@ -158,17 +158,19 @@ const ResponsiveAppBar = ({handleOpenNotification}) => {
     <AppBar position="static" sx={{position:'sticky',left:"-2px",top:'-2px', zIndex:'999'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',flexWrap:'wrap'}}>
-          <Link to='/' className="textnone">
 
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" },justifyItems:'start' }}
+            onClick={(e)=>{
+              navigate('/library/');
+            }}
           >
           ONLINE LIBRARY
           </Typography>
-          </Link>
+          
           
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -192,16 +194,18 @@ const ResponsiveAppBar = ({handleOpenNotification}) => {
               {list()}
             </SwipeableDrawer>
           </Box>
-          <Link to='/' className="textnone">
           <Typography
             variant="h6"
             noWrap
             component="h6"
+            onClick={(e)=>{
+              navigate('/library/');
+            }}
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
             ONLINE LIBRABY
           </Typography>
-          </Link>
+        
           {auth&&<><Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Link to={`/${page}/`} className="textnone ">
@@ -231,7 +235,7 @@ const ResponsiveAppBar = ({handleOpenNotification}) => {
           </Box>
           <BookMenu/></>}
 
-          <Search sx={{marginRight:"15px"}}>
+        { !profile&& (<Search sx={{marginRight:"15px"}}>
             <SearchIconWrapper >
               <SearchIcon />
             </SearchIconWrapper>
@@ -239,7 +243,7 @@ const ResponsiveAppBar = ({handleOpenNotification}) => {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' } } onChange={handleSearch} type="search"
             />
-          </Search>
+          </Search>)}
           {auth&&
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

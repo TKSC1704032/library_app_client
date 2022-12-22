@@ -14,7 +14,7 @@ import Preloader from "../components/Pre-loader/Preloader";
    const [searchTerm,setSearchTerm]= useState('all');
     const [currentUser, setCurrentUser] = useState({});
     const [accessToken,setAccessToken]= useState('')
-    axios.defaults.baseURL = 'https://warm-sea-39505.herokuapp.com/api/student/';
+    axios.defaults.baseURL = 'https://ruetonlineservice.onrender.com/api/student/';
    
    
      const checkUser=()=>{
@@ -209,8 +209,8 @@ import Preloader from "../components/Pre-loader/Preloader";
       logout,
       sendUserPasswordResetEmail,
       userPasswordReset,
-      currentUser,
-      searchTerm,setSearchTerm
+      currentUser,setCurrentUser,
+      searchTerm,setSearchTerm,checkUser
     };
   
     return (

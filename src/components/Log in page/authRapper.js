@@ -14,7 +14,7 @@ export default function AuthRapper(props) {
           <Toolbar>
             
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={()=>{navigate('/')}}>
-              Online Library Management System
+              Online Seba
             </Typography>
           
             

@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -72,7 +73,7 @@ export default function StudentsInfo() {
   }; 
  useEffect(()=>{
   setLoad(true);
-  axios.post('https://warm-sea-39505.herokuapp.com/api/admin/find-students/',{"searchTerm":searchTerm},
+  axios.post('https://ruetonlineservice.onrender.com/api/admin/find-students/',{"searchTerm":searchTerm},
   {credentials: 'include',withCredentials: true}
   ).then((res)=>{
   setLoad(false);

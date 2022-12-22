@@ -7,7 +7,7 @@ export default function PrivateRouter() {
    
   return(
     <>
-      {auth? (<Outlet/>):(<Navigate to='/login'/>)}
+      {auth? (<Outlet/>):(<Navigate to='/seba-login'/>)}
       
     </>
   )

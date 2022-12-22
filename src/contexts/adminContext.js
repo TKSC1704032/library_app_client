@@ -16,7 +16,7 @@ import Preloader from '../components/Pre-loader/Preloader';
    
     useEffect(()=>{
       setLoading(true);
-      axios.get('https://warm-sea-39505.herokuapp.com/api/admin/getAdmin/', {credentials: 'include',withCredentials: true}).then((res)=>{
+      axios.get('https://ruetonlineservice.onrender.com/api/admin/getAdmin/', {credentials: 'include',withCredentials: true}).then((res)=>{
         setAuth(true);
         setLoading(false);
 
@@ -30,7 +30,7 @@ import Preloader from '../components/Pre-loader/Preloader';
 
     async function adminLogin( datas={}) {
       try{
-        const response= await axios.post('https://warm-sea-39505.herokuapp.com/api/admin/login-admin/', datas, {credentials: 'include',withCredentials: true});
+        const response= await axios.post('https://ruetonlineservice.onrender.com/api/admin/login-admin/', datas, {credentials: 'include',withCredentials: true});
         if (response.status === 201) {
           
           setAuth(true);
@@ -46,7 +46,7 @@ import Preloader from '../components/Pre-loader/Preloader';
     // logout function
     async function adminLogout( ) {
       try{
-        const response= await axios.post('https://warm-sea-39505.herokuapp.com/api/admin/adminLogout',{}, {credentials: 'include',withCredentials: true});
+        const response= await axios.post('https://ruetonlineservice.onrender.com/api/admin/adminLogout',{}, {credentials: 'include',withCredentials: true});
         if(response.status === 200){
          
           setAuth(false);
@@ -54,6 +54,7 @@ import Preloader from '../components/Pre-loader/Preloader';
         }
       return response.data;
       }
+      
       catch(error){
       console.log(error);
         return   error.response.data || error.message;
@@ -72,7 +73,7 @@ import Preloader from '../components/Pre-loader/Preloader';
         try{
             const config = {
                 method: 'post',
-                url: 'https://warm-sea-39505.herokuapp.com/api/admin/upload-book/',
+                url: 'https://ruetonlineservice.onrender.com/api/admin/upload-book/',
                 headers: { "Content-type": "multipart/form-data" },
                 data:formData
 

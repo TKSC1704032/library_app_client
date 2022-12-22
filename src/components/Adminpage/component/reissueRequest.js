@@ -16,7 +16,7 @@ export default function ReIssueRequest() {
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState({status:'',message:''});
   const getReIssueRequest=()=>{
-   axios.get("https://warm-sea-39505.herokuapp.com/api/admin/find-all-reissue-request/",
+   axios.get("https://ruetonlineservice.onrender.com/api/admin/find-all-reissue-request/",
    {credentials: 'include',withCredentials: true})
  .then((res)=>{
    
@@ -75,7 +75,7 @@ export default function ReIssueRequest() {
                   onClick={()=>{
                     setLoading(true);
                     
-                    axios.post("https://warm-sea-39505.herokuapp.com/api/admin/response-reissue-request/",{
+                    axios.post("https://ruetonlineservice.onrender.com/api/admin/response-reissue-request/",{
                       "requestID":i._id,
                       "accept":true
                     },
@@ -112,7 +112,7 @@ export default function ReIssueRequest() {
                   onClick={()=>{
                     setLoading(true);
                     
-                    axios.post("https://warm-sea-39505.herokuapp.com/api/admin/response-reissue-request/",{
+                    axios.post("https://ruetonlineservice.onrender.com/api/admin/response-reissue-request/",{
                       "requestID":i._id,
                       "accept":false
                     },

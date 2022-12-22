@@ -27,6 +27,7 @@ const pages = [
   "Add Books",
   "ReturnBook",
   "Students-Info",
+  "Create Teacher Account"
 ];
 const settings = ["Logout"];
 const AppBars = () => {
@@ -107,7 +108,7 @@ const AppBars = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            ONLINE LIBRARY Admin
+            ONLINE SEBA ADMIN
           </Typography>
 
           </Link>

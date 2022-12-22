@@ -3,11 +3,11 @@ import React from "react";
 import Clock from './clock';
 import Footer from "./footer";
 import ResponsiveAppBar from "./header";
-export default function Rapper({ children }) {
+export default function Rapper({ profile,children }) {
   return (
     <>
     <Clock/>
-      <ResponsiveAppBar />
+      <ResponsiveAppBar profile/>
       <Container maxWidth="xl">
         <Box
           mt={2}
@@ -15,7 +15,7 @@ export default function Rapper({ children }) {
         >
           {children}
         </Box>
-        <Footer/>
+        {!profile&&<Footer/>}
 
       </Container>
     </>
