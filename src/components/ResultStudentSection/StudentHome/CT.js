@@ -52,7 +52,7 @@ const CT = () => {
     setSeries(newUserInfo);
   };
   useEffect(()=>{
-    axios.post("http://localhost:8080/api/result/get-ct-result/",{roll:currentUser.roll},
+    axios.post("https://ruetonlineservice.onrender.com/api/result/get-ct-result/",{roll:currentUser.roll},
     {credentials: 'include',withCredentials: true})
   .then(function(res){
     

@@ -1,7 +1,7 @@
 import {
-  Card,
-  CardContent,
-  Grid, makeStyles, Typography
+    Card,
+    CardContent,
+    Grid, makeStyles, Typography
 } from "@material-ui/core";
 import axios from "axios";
 import "firebase/compat/auth";
@@ -52,7 +52,7 @@ const Semester = () => {
     setSeries(newUserInfo);
   };
   useEffect(()=>{
-    axios.post("http://localhost:8080/api/result/get-result/",{roll:currentUser.roll},
+    axios.post("https://ruetonlineservice.onrender.com/api/result/get-result/",{roll:currentUser.roll},
     {credentials: 'include',withCredentials: true})
   .then(function(res){
     

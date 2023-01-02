@@ -72,7 +72,7 @@ export default function UpdateSemRes() {
                         try{
                             const config = {
                                 method: 'post',
-                                url: 'http://localhost:8080/api/result/upload-result/',
+                                url: 'https://ruetonlineservice.onrender.com/api/result/upload-result/',
                                 headers: { "Content-type": "multipart/form-data" },
                                 data:formData
                 

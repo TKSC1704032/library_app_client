@@ -3,14 +3,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import UploadIcon from "@mui/icons-material/Upload";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {
-  FormControl,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Paper,
-  TextField
+    FormControl,
+    Grid,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    OutlinedInput,
+    Paper,
+    TextField
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
@@ -82,7 +82,7 @@ export default function AddTeacher() {
 
                 axios
                   .post(
-                    "http://localhost:8080/api/result/add-teacher/",
+                    "https://ruetonlineservice.onrender.com/api/result/add-teacher/",
                     details,
                     { credentials: "include", withCredentials: true }
                   )

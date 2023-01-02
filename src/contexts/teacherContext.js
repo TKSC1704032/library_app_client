@@ -16,7 +16,7 @@ import Preloader from '../components/Pre-loader/Preloader';
    
     useEffect(()=>{
       setLoading(true);
-      axios.get('http://localhost:8080/api/result/get-teacher/', {credentials: 'include',withCredentials: true}).then((res)=>{
+      axios.get('https://ruetonlineservice.onrender.com/api/result/get-teacher/', {credentials: 'include',withCredentials: true}).then((res)=>{
         setAuth(true);
         setLoading(false);
 
@@ -30,7 +30,7 @@ import Preloader from '../components/Pre-loader/Preloader';
 
     async function teacherLogin( datas={}) {
       try{
-        const response= await axios.post('http://localhost:8080/api/result/teacher-login/', datas, {credentials: 'include',withCredentials: true});
+        const response= await axios.post('https://ruetonlineservice.onrender.com/api/result/teacher-login/', datas, {credentials: 'include',withCredentials: true});
         if (response.status === 201) {
           
           setAuth(true);
@@ -47,7 +47,7 @@ import Preloader from '../components/Pre-loader/Preloader';
     // logout function
     async function teacherLogout( ) {
       try{
-        const response= await axios.post('http://localhost:8080/api/result/teacherlogout/',{}, {credentials: 'include',withCredentials: true});
+        const response= await axios.post('https://ruetonlineservice.onrender.com/api/result/teacherlogout/',{}, {credentials: 'include',withCredentials: true});
         if(response.status === 200){
          
           setAuth(false);

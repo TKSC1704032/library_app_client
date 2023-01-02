@@ -14,7 +14,7 @@ let { sem } = useParams();
  const [bookLoad,setBookLoad]=useState(true);
  const [bookMessage,setBookMessage]=useState('');
  useEffect(()=>{
-  axios.get(`http://localhost:8080/api/student/find-sem-books/${currentUser.dept}/${sem}/`,
+  axios.get(`https://ruetonlineservice.onrender.com/api/student/find-sem-books/${currentUser.dept}/${sem}/`,
   {credentials: 'include',withCredentials: true})
 .then(function(res){
   

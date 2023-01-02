@@ -1,13 +1,13 @@
 import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  InputLabel,
-  makeStyles,
-  MenuItem,
-  Select,
-  TextField
+    Box,
+    Button,
+    Card,
+    Grid,
+    InputLabel,
+    makeStyles,
+    MenuItem,
+    Select,
+    TextField
 } from "@material-ui/core";
 import CloseIcon from "@mui/icons-material/Close";
 import UploadIcon from "@mui/icons-material/Upload";
@@ -227,7 +227,7 @@ const Update = () => {
     try {
       const config = {
         method: "post",
-        url: "http://localhost:8080/api/admin/upload-book/",
+        url: "https://ruetonlineservice.onrender.com/api/admin/upload-book/",
         headers: { "Content-type": "multipart/form-data" },
         data: formData,
       };
@@ -241,7 +241,7 @@ const Update = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // fetch("http://localhost:8080/api/result/upload-result-manually/", {
+    // fetch("https://ruetonlineservice.onrender.com/api/result/upload-result-manually/", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -301,7 +301,7 @@ const Update = () => {
 
                       axios
                         .post(
-                          "http://localhost:8080/api/result/add-teacher/",
+                          "https://ruetonlineservice.onrender.com/api/result/add-teacher/",
                           details,
                           { credentials: "include", withCredentials: true }
                         )
@@ -480,7 +480,7 @@ const Update = () => {
 
                       axios
                         .post(
-                          "http://localhost:8080/api/result/upload-result/",
+                          "https://ruetonlineservice.onrender.com/api/result/upload-result/",
                           details,
                           { credentials: "include", withCredentials: true }
                         )
