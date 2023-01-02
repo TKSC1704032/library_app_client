@@ -16,7 +16,7 @@ export default function ReIssueRequest() {
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState({status:'',message:''});
   const getReIssueRequest=()=>{
-   axios.get("https://ruetonlineservice.onrender.com/api/admin/find-all-reissue-request/",
+   axios.get("http://localhost:8080/api/admin/find-all-reissue-request/",
    {credentials: 'include',withCredentials: true})
  .then((res)=>{
    
@@ -75,7 +75,7 @@ export default function ReIssueRequest() {
                   onClick={()=>{
                     setLoading(true);
                     
-                    axios.post("https://ruetonlineservice.onrender.com/api/admin/response-reissue-request/",{
+                    axios.post("http://localhost:8080/api/admin/response-reissue-request/",{
                       "requestID":i._id,
                       "accept":true
                     },
@@ -112,7 +112,7 @@ export default function ReIssueRequest() {
                   onClick={()=>{
                     setLoading(true);
                     
-                    axios.post("https://ruetonlineservice.onrender.com/api/admin/response-reissue-request/",{
+                    axios.post("http://localhost:8080/api/admin/response-reissue-request/",{
                       "requestID":i._id,
                       "accept":false
                     },

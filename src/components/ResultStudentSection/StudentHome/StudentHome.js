@@ -1,11 +1,3 @@
-import {
-  Box,
-  Button,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Select
-} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import { userContext } from "../../App";
 import Clock from '../../Homepage/component/clock';
 import Footer from "../../Homepage/component/footer";
@@ -66,6 +58,7 @@ const StudentHome = () => {
   const handleOpen2 = () => setOpen2(true);
   const handleClose1 = () => setOpen1(false);
   const handleClose2 = () => setOpen2(false);
+  const navigate=useNavigate();
  // const [loggedInUser, setLoggedInUser] = useContext(userContext);
   //const [admins, setAddmins] = useState([]);
   const handleBlur = (event) => {
@@ -116,7 +109,7 @@ const StudentHome = () => {
           </Link>
         ) : ( */}
           <div>
-            <Card onClick={handleOpen1} className={classes.card}>
+            <Card onClick={(e)=>{navigate('/semmarkcheck/')}} className={classes.card}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -130,38 +123,7 @@ const StudentHome = () => {
                 </CardContent>
               </CardActionArea>
             </Card>
-            <Modal open={open1} onClose={handleClose1}>
-              <Box sx={style} style={{ left: "14%" }}>
-                {/* <TextField
-                                        onBlur={handleBlur}
-                                        label='Semester'
-                                        type='text'
-                                        name='sem'
-                                        InputLabelProps={{ shrink: true }} /> */}
-                <InputLabel id="semLebel">
-                  {!series.sem && "Semester"}
-                </InputLabel>
-                <Select
-                  labelId="semLevel"
-                  id="sem"
-                  name="sem"
-                  value={series.sem}
-                  onChange={handleBlur}
-                  autoWidth
-                  label="Sem"
-                  style={{paddingLeft:'100px'}}
-                >
-                  {semester.map((val, ind) => {
-                    return <MenuItem value={ind}>{val}</MenuItem>;
-                  })}
-                </Select>
-                <Link to={`/seeS/srs/${series.sem}`}>
-                  <Button variant="contained" color="success">
-                    Search
-                  </Button>
-                </Link>
-              </Box>
-            </Modal>
+
           </div>
         {/* )} */}
       </Grid>
@@ -185,7 +147,7 @@ const StudentHome = () => {
           </Link>
         ) : ( */}
           <div>
-            <Card onClick={handleOpen2} className={classes.card}>
+            <Card onClick={(e)=>{navigate('/ctmarkcheck/')}} className={classes.card}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -199,38 +161,7 @@ const StudentHome = () => {
                 </CardContent>
               </CardActionArea>
             </Card>
-            <Modal open={open2} onClose={handleClose2}>
-              <Box sx={style} >
-                {/* <TextField
-                                    onBlur={handleBlur}
-                                    label='Semester'
-                                    type='text'
-                                    name='sem'
-                                    InputLabelProps={{ shrink: true }} /> */}
-                <InputLabel id="semLebel">
-                  {!series.sem && "Semester"}
-                </InputLabel>
-                <Select
-                  labelId="semLevel"
-                  id="sem"
-                  name="sem"
-                  value={series.sem}
-                  onChange={handleBlur}
-                  autoWidth
-                  label="Sem"
-                  style={{paddingLeft:'100px'}}
-                >
-                  {semester.map((val, ind) => {
-                    return <MenuItem value={ind}>{val}</MenuItem>;
-                  })}
-                </Select>
-                <Link to={`/seeS/cts/${series.sem}`}>
-                  <Button variant="contained" color="success">
-                    Search
-                  </Button>
-                </Link>
-              </Box>
-            </Modal>
+            
           </div>
       
       </Grid>

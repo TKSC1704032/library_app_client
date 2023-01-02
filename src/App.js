@@ -29,10 +29,13 @@ import StudentLogin from "./components/Log in page/studentLogin";
 import Studentsignup from "./components/Log in page/studentsignup";
 import TeacherLogin from "./components/Log in page/teacherLogin";
 import SebaHome from "./components/ResultStudentSection/Home/SebaHome";
+import CT from "./components/ResultStudentSection/StudentHome/CT";
+import Semester from "./components/ResultStudentSection/StudentHome/Semester";
 import StudentHome from "./components/ResultStudentSection/StudentHome/StudentHome";
 import StudentHomeRapper from "./components/ResultStudentSection/StudentHome/StudentHomeRapper";
 import TeacherHome from "./components/ResultStudentSection/Teachers/Main/TeacherHome";
-import Update from "./components/ResultStudentSection/Teachers/Main/Update";
+import UpdateCtRes from "./components/ResultStudentSection/Teachers/UpdateCtRes";
+import UpdateSemRes from "./components/ResultStudentSection/Teachers/UpdateSemRes";
 import AdminProvider from "./contexts/adminContext";
 import AuthProvider from "./contexts/authContext";
 import TeacherProvider from "./contexts/teacherContext";
@@ -52,8 +55,12 @@ function App() {
     <Route path="/teacher-login/" element={ <AuthRapper><TeacherLogin/></AuthRapper>}/>
      
     <Route element={<TeacherPrivateRouter/>}>
+          
         <Route path="/teacherHomePage/" element={<TeacherHome/>}/>
-        <Route path="/teacherHomePage/updatesem/" element={<Update/>}/>
+        {/* <Route path="/teacherHomePage/updatesem/" element={<Update/>}/> */}
+        <Route path="/teacherHomePage/updatesem/" element={<UpdateSemRes/>}/>
+        <Route path="/teacherHomePage/updateCT/" element={<UpdateCtRes/>}/>
+
         <Route path="/teacherHomePage/" element={<TeacherHome/>}/>
         
         
@@ -90,7 +97,8 @@ function App() {
         <Route element={<PrivateRouter/>}>
 
         <Route path="/" element={ <StudentHome/>}/>
-
+        <Route path="/semmarkcheck/" element={ <Semester/>}/>
+        <Route path="/ctmarkcheck/" element={ <CT/>}/>
 
         <Route path="/library/" element={ <Homepage/>}>
         <Route path="/library/" element={ <Showbooks/>}/>

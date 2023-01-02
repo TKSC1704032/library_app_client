@@ -1,18 +1,14 @@
 import {
-    Card,
-    CardActionArea,
-    CardContent,
-    Grid,
-    InputLabel,
-    makeStyles,
-    MenuItem,
-    Select,
-    Typography
+  Card,
+  CardContent,
+  Grid, makeStyles, Typography
 } from "@material-ui/core";
 import axios from "axios";
 import "firebase/compat/auth";
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../../contexts/authContext";
 import bg from "../../Images/1stb.jfif";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -39,31 +35,13 @@ const useStyles = makeStyles((theme) => ({
 const CT = () => {
     const [result,setResult]=useState([])
     const [resultLoad,setResultLoad]=useState()
-    const [resultMessage,SetResultMessage]=useState()
-    useEffect(()=>{
-        axios.post("http://localhost:5000/api/student/find-books/",{},
-        {credentials: 'include',withCredentials: true})
-      .then(function(res){
-        
-        console.log(res.data.books)
-        setResultLoad(false);
-        if(res.data){
-          setResult(res.data.books);
-         
-        }
-      })
-      .catch(function(err){ 
-        setResultLoad(false);
-        setResult({});
-      
-        SetResultMessage("failed")
-      
-        console.log(err) })
-       },[])
-  const findRes = [];
-  
+    const [resultMessage,SetResultMessage]=useState();
+    const {currentUser}=useAuth();
+
   const classes = useStyles();
   const semester = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  const [findResult, setFindResult] = useState([]);
+
   const [series, setSeries] = useState({});
   const handleBlur = (event) => {
     const newUserInfo = { ...series };
@@ -73,92 +51,72 @@ const CT = () => {
         : event.target.value;
     setSeries(newUserInfo);
   };
+  useEffect(()=>{
+    axios.post("http://localhost:8080/api/result/get-ct-result/",{roll:currentUser.roll},
+    {credentials: 'include',withCredentials: true})
+  .then(function(res){
+    
+    console.log(res.data.results)
+    setResultLoad(false);
+    if(res.data){
+      setResult(res.data.results);
+     
+    }
+  })
+  .catch(function(err){ 
+    setResultLoad(false);
+    setResult({});
+  
+    SetResultMessage("failed")
+  
+    console.log(err) })
+   },[])
   return (
     <Grid container spacing={0} className={classes.circle} direction="row">
-      <Grid item xs={0} sm={2} />
-      <Grid item container xs={12} sm={8} spacing={0} direction="row">
-        <Grid item xs={12} sm={12}>
-          <Card className={classes.card}>
-            <InputLabel id="semLebel">{!series.sem && "Semester"}</InputLabel>
-            <Select
-              labelId="semLevel"
-              id="sem"
-              name="sem"
-              fullWidth
-              value={series.sem}
-              onChange={handleBlur}
-              autoWidth
-              label="Sem"
-              style={{ textAlign: "center" }}
-            >
-              {semester.map((val, ind) => {
-                return (
-                  <MenuItem style={{ width: "75px" }} value={ind}>
-                    {val}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-            <button
-              style={{
-                marginTop: "5px",
-                backgroundColor: "goldenrod",
-                border: "none",
-                borderRadius: "10px",
-                width: "100%",
-                fontWeight: "700",
-              }}
-            >
-              Search
-            </button>
-          </Card>
-        </Grid>
+      
 
-        <Grid item container xs={12} sm={12} spacing={0}>
-          
-        {findRes.map(res => {
-                        return [
-                            <Grid item xs={12} sm={4} >
-                                <Card className={classes.card}>
-                                    <CardActionArea>
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                {res.name}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                Roll:{res.roll}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                Course Name:{res.cname}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                CT1:{res.ct1}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                CT2:{res.ct2}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                CT3:{res.ct3}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                CT4:{res.ct4}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                CT Average:{Math.round((parseInt(res.ct1) + parseInt(res.ct2) + parseInt(res.ct3) + parseInt(res.ct4) - Math.min(parseInt(res.ct1), parseInt(res.ct2), parseInt(res.ct3), parseInt(res.ct4))) / 3) || ' '}
-                                            </Typography>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                            Attendance Marks:{res.ap.length===4? 8 :parseInt(res.ap.slice(0,2))>90 && 8  || parseInt(res.ap.slice(0,2))<50 && 0 || parseInt(res.ap.slice(0,2))>80 && 6  || parseInt(res.ap.slice(0,2))>70 && 5  || parseInt(res.ap.slice(0,2))>60 && 3  }
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Grid>
-                        ]
-                    })}
+         {result.map((findRes,index)=>{
+           return(
+            <Grid item xs={12} sm={6}>
+            <Card className={classes.card}>
+              <CardContent>
+                {/* <Typography gutterBottom variant="h5" component="h2">
+                  {findRes[0] && findRes[0].name}
+                </Typography> */}
+                <Typography gutterBottom variant="h5" component="h2">
+                 Roll: {findRes && findRes.roll}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                 Course Title: {findRes && findRes.courseTitle}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  CT1:{findRes && findRes.CT1}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                 CT2:{findRes && findRes.CT2}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  CT3:{findRes&& findRes.CT3}
+                </Typography>
+               
+                <Typography gutterBottom variant="h5" component="h2">
+                  CT4:{findRes&& findRes.CT4}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                Attendance:{findRes && findRes.attendance}
+                </Typography>
+                {/* <Typography gutterBottom variant="h5" component="h2">
+                  Failed Subjects:{findRes && findRes.failedSubject}
+                </Typography> */}
+              </CardContent>
+            </Card>
+          </Grid>
+           )
+         })} 
         </Grid>
-      </Grid>
-      <Grid item xs={0} sm={2} />
-    </Grid>
+   
+     
+    
   );
 };
 

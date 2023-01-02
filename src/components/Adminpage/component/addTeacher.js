@@ -82,7 +82,7 @@ export default function AddTeacher() {
 
                 axios
                   .post(
-                    "https://ruetonlineservice.onrender.com/api/result/add-teacher/",
+                    "http://localhost:8080/api/result/add-teacher/",
                     details,
                     { credentials: "include", withCredentials: true }
                   )

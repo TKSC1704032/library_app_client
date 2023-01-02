@@ -192,7 +192,7 @@ import TeacherHeader from "./TeacherHeader";
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                     Check/Update CT Marks & Attendance
+                     Update CT Marks & Attendance
                     </Typography>
                   </CardContent>
                 </CardActionArea>

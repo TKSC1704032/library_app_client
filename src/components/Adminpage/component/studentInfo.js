@@ -73,7 +73,7 @@ export default function StudentsInfo() {
   }; 
  useEffect(()=>{
   setLoad(true);
-  axios.post('https://ruetonlineservice.onrender.com/api/admin/find-students/',{"searchTerm":searchTerm},
+  axios.post('http://localhost:8080/api/admin/find-students/',{"searchTerm":searchTerm},
   {credentials: 'include',withCredentials: true}
   ).then((res)=>{
   setLoad(false);

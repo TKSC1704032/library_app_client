@@ -227,7 +227,7 @@ const Update = () => {
     try {
       const config = {
         method: "post",
-        url: "https://ruetonlineservice.onrender.com/api/admin/upload-book/",
+        url: "http://localhost:8080/api/admin/upload-book/",
         headers: { "Content-type": "multipart/form-data" },
         data: formData,
       };
@@ -241,7 +241,7 @@ const Update = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // fetch("https://ruetonlineservice.onrender.com/api/result/upload-result-manually/", {
+    // fetch("http://localhost:8080/api/result/upload-result-manually/", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -301,7 +301,7 @@ const Update = () => {
 
                       axios
                         .post(
-                          "https://ruetonlineservice.onrender.com/api/result/add-teacher/",
+                          "http://localhost:8080/api/result/add-teacher/",
                           details,
                           { credentials: "include", withCredentials: true }
                         )
@@ -480,7 +480,7 @@ const Update = () => {
 
                       axios
                         .post(
-                          "https://ruetonlineservice.onrender.com/api/result/upload-result/",
+                          "http://localhost:8080/api/result/upload-result/",
                           details,
                           { credentials: "include", withCredentials: true }
                         )

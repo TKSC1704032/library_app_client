@@ -16,7 +16,7 @@ export default function IssueRequest() {
  const [loading, setLoading] = useState(false);
  const [info, setInfo] = useState({status:'',message:''});
  const getIssueRequest=()=>{
-  axios.get("https://ruetonlineservice.onrender.com/api/admin/find-all-issue-request/",
+  axios.get("http://localhost:8080/api/admin/find-all-issue-request/",
   {credentials: 'include',withCredentials: true})
 .then((res)=>{
   
@@ -76,7 +76,7 @@ export default function IssueRequest() {
                   onClick={()=>{
                     setLoading(true);
                     
-                    axios.post("https://ruetonlineservice.onrender.com/api/admin/response-issue-request/",{
+                    axios.post("http://localhost:8080/api/admin/response-issue-request/",{
                       "requestID":i._id,
                       "accept":true
                     },
@@ -113,7 +113,7 @@ export default function IssueRequest() {
                   onClick={()=>{
                     setLoading(true);
                     
-                    axios.post("https://ruetonlineservice.onrender.com/api/admin/response-issue-request/",{
+                    axios.post("http://localhost:8080/api/admin/response-issue-request/",{
                       "requestID":i._id,
                       "accept":false
                     },

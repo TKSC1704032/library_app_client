@@ -14,7 +14,7 @@ import Preloader from "../components/Pre-loader/Preloader";
    const [searchTerm,setSearchTerm]= useState('all');
     const [currentUser, setCurrentUser] = useState({});
     const [accessToken,setAccessToken]= useState('')
-    axios.defaults.baseURL = 'https://ruetonlineservice.onrender.com/api/student/';
+    axios.defaults.baseURL = 'http://localhost:8080/api/student/';
    
    
      const checkUser=()=>{
